@@ -48,6 +48,7 @@
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchPlayer.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PrintMatchResults.cs" />
     <Compile Include="Models\Round.cs" />
     <Compile Include="Models\Throw.cs" />
     <Compile Include="Program.cs" />

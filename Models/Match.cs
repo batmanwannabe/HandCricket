@@ -22,8 +22,8 @@ namespace HandCricket.Models
 
         public void PlayFirstRound()
         {
-            Round firstRound = Rounds.First();
-            Console.WriteLine("Playing First Round");
+            PrintMatchResults.PrintFirstRound();
+            Round firstRound = Rounds.First();            
             int batsmanScore, throwingScore;
             for (int throwNumber = 1; throwNumber <= Throws.TotalThrows; throwNumber++)
             {
@@ -31,24 +31,22 @@ namespace HandCricket.Models
                 throwingScore = RandomNumber();
                 if (batsmanScore == throwingScore)
                 {
-                    Console.WriteLine(firstRound.BattingPlayer.Name + " Throws: " + batsmanScore + ", " + firstRound.ThrowingPlayer.Name + " Throws: " + throwingScore + " "
-                        + firstRound.BattingPlayer.Name + " is Out");
+                    PrintMatchResults.PrintMatchStats(firstRound.BattingPlayer.Name, firstRound.ThrowingPlayer.Name, batsmanScore, throwingScore, 0, true);
                     break;
                 }
                 else
                 {
                     firstRound.BattingPlayer.Score += batsmanScore;
-                    Console.WriteLine(firstRound.BattingPlayer.Name + " Throws: " + batsmanScore + ", " + firstRound.ThrowingPlayer.Name + " Throws: " + throwingScore + " "
-                        + firstRound.BattingPlayer.Name + " Score is " + firstRound.BattingPlayer.Score);
+                    PrintMatchResults.PrintMatchStats(firstRound.BattingPlayer.Name, firstRound.ThrowingPlayer.Name, batsmanScore, throwingScore, firstRound.BattingPlayer.Score, false);
                 }
             }
         }
 
         public void PlaySecondRound()
         {
+            PrintMatchResults.PrintSecondRound();
             Round firstRound = Rounds.First();
             Round secondRound = Rounds.Last();
-            Console.WriteLine("Playing Second Round");
             int batsmanScore, throwingScore;
             for (int throwNumber = 1; throwNumber <= Throws.TotalThrows; throwNumber++)
             {
@@ -56,8 +54,7 @@ namespace HandCricket.Models
                 throwingScore = RandomNumber();
                 if (batsmanScore == throwingScore)
                 {
-                    Console.WriteLine(secondRound.BattingPlayer.Name + " Throws: " + batsmanScore + ", " + secondRound.ThrowingPlayer.Name + " Throws: " + throwingScore + " "
-                        + secondRound.BattingPlayer.Name + " is Out");
+                    PrintMatchResults.PrintMatchStats(secondRound.BattingPlayer.Name, secondRound.ThrowingPlayer.Name, batsmanScore, throwingScore, 0, true);
                     break;
                 }
                 else
@@ -65,9 +62,8 @@ namespace HandCricket.Models
                     
                     secondRound.BattingPlayer.Score += batsmanScore;
 
-                    Console.WriteLine(secondRound.BattingPlayer.Name + " Throws: " + batsmanScore + ", " + secondRound.ThrowingPlayer.Name + " Throws: " + throwingScore + " "
-                        + secondRound.BattingPlayer.Name + " Score is " + secondRound.BattingPlayer.Score);
-                    
+                    PrintMatchResults.PrintMatchStats(secondRound.BattingPlayer.Name, secondRound.ThrowingPlayer.Name, batsmanScore, throwingScore, firstRound.BattingPlayer.Score, false);
+
                 }
             }
             if (firstRound.BattingPlayer.Score > secondRound.BattingPlayer.Score)

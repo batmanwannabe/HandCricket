@@ -6,8 +6,24 @@ using System.Threading.Tasks;
 
 namespace HandCricket.Models
 {
-    public class PrintMatchResults
+    public static class PrintMatchResults
     {
-       // public void Print(string batsman, string bowler, int batScore, int throwScore, )
+        public static void PrintFirstRound()
+        {
+            Console.WriteLine("Playing First Round..");
+        }
+        public static void PrintMatchStats(string batsman, string bowler, int batScore, int throwScore, int totalScore, bool isOut)
+        {
+            if(isOut)
+                Console.WriteLine(batsman + " Throws: " + batScore + ", " + bowler + " Throws: " + throwScore + " "
+                        + batsman + " is Out");
+            else
+                Console.WriteLine(batsman + " Throws: " + batScore + ", " + bowler + " Throws: " + throwScore + " "
+                        + batsman + " Score is " + totalScore);
+        }
+        public static void PrintSecondRound()
+        {
+            Console.WriteLine("Playing Second Round..");
+        }
     }
 }
